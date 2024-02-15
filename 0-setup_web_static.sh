@@ -19,6 +19,7 @@ config="location /hbnb_static/ {
     index index.html";
 }"
 
-sudo sed -i "/web_01;/a $config" /etc/nginx/sites-available/default
+sudo sed -i "/5857-web-01;/a $config" /etc/nginx/sites-available/default
+
 # Restart Nginx
 sudo service nginx restart
