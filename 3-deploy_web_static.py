@@ -2,7 +2,7 @@
 """ 
 Fabric script that creates and distributes an archive to your web servers 
 """
-from fabric.api import env, local, run
+from fabric.api import env, local, run, put
 from os.path import exists
 from datetime import datetime
 
@@ -24,9 +24,9 @@ def do_pack():
         return None
 
 
-def do_deploy():
+def do_deploy(archive_path):
     """ Distributes an archive to the web servers"""
-    if not exist(archive_path):
+    if not exists(archive_path):
         return False
     try:
         filename = archive_path.split("/")[-1]
@@ -50,4 +50,3 @@ def deploy():
     if not archive_path:     
         return False
     return do_deploy(archive_path)
-    
