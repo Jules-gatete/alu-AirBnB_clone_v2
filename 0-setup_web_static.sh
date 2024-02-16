@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #Install Nginx if not already installed
 sudo apt-get -y update
 sudo apt-get -y install nginx
@@ -19,7 +19,7 @@ config="location /hbnb_static/ {
     index index.html;
 }"
 
-sudo sed -i "/server_name web-01;/a $config" /etc/nginx/sites-available/default
+sudo sed -i '38i\\tlocation /hbnb_static/ {\n\t\talias /data/web_static/current/;\n\t}\n' /etc/nginx/sites-available/default
 
 # Restart Nginx
 sudo service nginx restart
