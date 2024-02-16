@@ -18,6 +18,8 @@ def do_pack():
         if exists("versions") is False:
             local("mkdir versions")
         filename = "versions/web_static_{}.tgz".format(get_date)
+        # Add my_index.html to the web_static folder
+        local("echo '<html><head></head><body>My Index Page</body></html>' > web_static/my_index.html")
         local("tar -cvzf {} web_static".format(filename))
         return filename
     except:
@@ -50,3 +52,11 @@ def deploy():
     if not archive_path:     
         return False
     return do_deploy(archive_path)
+
+def deploy_local():
+    """Creates and deploys a new version locally"""
+    return deploy()
+
+# Call the deploy_local function when the script is executed directly
+if __name__ == "__main__":
+    deploy_local()
