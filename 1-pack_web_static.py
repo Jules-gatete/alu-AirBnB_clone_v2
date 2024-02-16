@@ -7,6 +7,7 @@ import fabric.api as fab
 from datetime import datetime
 import os
 
+
 def do_pack():
     """
     Creates a .tgz archive from the contents of the web_static folder.
@@ -22,6 +23,6 @@ def do_pack():
     except Exception as e:
         return None
 
+
 if __name__ == "__main__":
     do_pack()
-
