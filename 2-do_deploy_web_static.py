@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-from fabric.api import env,put,run
+from fabric.api import env, put, run
 import os
 
 env.hosts = ["54.227.78.227", "34.229.215.10"]
@@ -10,6 +10,7 @@ def do_deploy(archive_path):
     """Distributes an archive to the web servers"""
     if os.path.exists(archive_path) is False:
         return False
+
     try:
         filename = archive_path.split("/")[-1]
         no_ext = filename.split(".")[0]
@@ -25,3 +26,4 @@ def do_deploy(archive_path):
         return True
     except:
         return False
+
