@@ -1,18 +1,18 @@
 #!/usr/bin/python3
 """
-Starts a Flask web application.
+starts a Flask web application
 """
 
 from flask import Flask, render_template
+from models import *
 from models import storage
-
 app = Flask(__name__)
 
 
 @app.route('/states', strict_slashes=False)
 @app.route('/states/<state_id>', strict_slashes=False)
 def states(state_id=None):
-    """Display the states and cities."""
+    """display the states and cities"""
     states = storage.all("State")
     if state_id is not None:
         state_id = 'State.' + state_id
@@ -21,7 +21,7 @@ def states(state_id=None):
 
 @app.teardown_appcontext
 def teardown_db(exception):
-    """Closes the storage."""
+    """closes the storage"""
     storage.close()
 
 
